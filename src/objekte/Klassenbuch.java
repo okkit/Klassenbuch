@@ -23,6 +23,9 @@ public class Klassenbuch extends MutterObjekt {
 		if (eintraege == null) {
 			eintraege = new ArrayList<Eintrag>();
 		}
+		
+		eintrag.setKlassenbuch(this);
+		eintraege.add(eintrag);
 	}
 	
 	public boolean removeEintrag(Eintrag eintrag) {

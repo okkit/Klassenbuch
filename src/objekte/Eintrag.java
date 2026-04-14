@@ -9,14 +9,16 @@ public class Eintrag extends MutterObjekt {
 	private String inhalt;
 	private ArrayList<Methodik> methodik;
 
+	private Klassenbuch klassenbuch;
+
 	/**
 	 * Standardkonstruktor<br>
 	 * Das Datum wird auf das aktuelle Datum initialisiert.
 	 */
 	public Eintrag() {
-		this(LocalDate.now());		
+		this(LocalDate.now());
 	}
-	
+
 	public Eintrag(LocalDate datum) {
 		super();
 		this.datum = datum;
@@ -25,7 +27,11 @@ public class Eintrag extends MutterObjekt {
 
 	@Override
 	public String toString() {
-		return "Eintrag [datum=" + datum + ", inhalt=" + inhalt + ", methodik=" + methodik + "]";
+		String info = "\n Eintrag vom " + datum;
+		if (klassenbuch != null)
+			info += " der Gruppe " + klassenbuch.getGruppe().getName();
+		info += "\n Inhalt: " + inhalt + "\n Methodik: " + methodik;
+		return info;
 	}
 
 	// Methode zum adden einer Instanz der Klasse Methodik zum ArrayList methodik
@@ -56,6 +62,14 @@ public class Eintrag extends MutterObjekt {
 
 	public void setMethodik(ArrayList<Methodik> methodik) {
 		this.methodik = methodik;
+	}
+
+	public Klassenbuch getKlassenbuch() {
+		return klassenbuch;
+	}
+
+	public void setKlassenbuch(Klassenbuch klassenbuch) {
+		this.klassenbuch = klassenbuch;
 	}
 
 }

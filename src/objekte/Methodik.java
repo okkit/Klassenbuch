@@ -5,10 +5,18 @@ public class Methodik extends MutterObjekt {
 	private String name;
 	private String beschreibung;
 	
+	public Methodik() {
+		super();
+	}
+	
+	public Methodik(String name) {
+		super();
+		this.name = name;
+	}
 	
 	@Override
 	public String toString() {
-		return "Methodik [name=" + name + ", beschreibung=" + beschreibung + "]";
+		return name;
 	}
 	public String getName() {
 		return name;
