@@ -8,7 +8,7 @@ public class Klassenbuch extends MutterObjekt {
 	private Modul modul;
 	private Gruppe gruppe;
 
-	List<Eintrag> eintraege;
+	private List<Eintrag> eintraege;
 
 	public Klassenbuch(Modul modul, Gruppe gruppe) {
 		super();

@@ -10,7 +10,7 @@ public class Gruppe extends MutterObjekt {
 
 	// Gruppe besteht aus Studenten
 	// List ist keine Klasse sondern ein Interface
-	private List<?> studenten; // Fragezeichen als Datentyp!!!
+	private List<String> studenten;
 
 	// Frage: Welche(n) Konstruktor(en) soll die Klasse anbieten?
 
@@ -18,16 +18,21 @@ public class Gruppe extends MutterObjekt {
 		super();
 		this.name = name;
 		this.bildungsgang = bildungsgang;
-		// Deklaration List<?> studenten
 		// Von einem Interface kann man keine Instanz bilden,
 		// deshalb new ArrayList und NICHT new List. Das geht, weil
 		// die Klasse ArrayList implementiert das Interface List.
-		studenten = new ArrayList<>();
+		studenten = new ArrayList<String>();
 	}
 
 	@Override
 	public String toString() {
 		return "Gruppe [name=" + name + ", bildungsgang=" + bildungsgang + ", studenten=" + studenten + "]";
+	}
+
+	public void addStudent(String student) {
+		if (student == null)
+			return;
+		studenten.add(student);
 	}
 
 	public String getName() {
@@ -46,11 +51,11 @@ public class Gruppe extends MutterObjekt {
 		this.bildungsgang = bildungsgang;
 	}
 
-	public List<?> getStudenten() {
+	public List<String> getStudenten() {
 		return studenten;
 	}
 
-	public void setStudenten(List<?> studenten) {
+	public void setStudenten(List<String> studenten) {
 		this.studenten = studenten;
 	}
 

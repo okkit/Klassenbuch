@@ -17,11 +17,8 @@ public class SimpleFileSaver implements DataSaver{
 			fileName = eintrag.getKlassenbuch().getGruppe().getName();
 		fileName += eintrag.getDatum();
 		
-		try {
-			FileOutputStream fileOutputStream = new FileOutputStream(FOLDER + fileName);
+		try (FileOutputStream fileOutputStream = new FileOutputStream(FOLDER + fileName)) {
 			fileOutputStream.write(eintrag.toString().getBytes());
-			fileOutputStream.close();
-			
 		} catch (IOException e) {
 			return e.getMessage();
 		}
