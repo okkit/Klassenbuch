@@ -5,10 +5,19 @@ import java.io.IOException;
 
 import objekte.Eintrag;
 
+/**
+ * Speichert Einträge als einfache Textdateien im Ordner data/simple/.
+ * Der Dateiname setzt sich aus dem Gruppennamen und dem Datum zusammen.
+ */
 public class SimpleFileSaver implements DataSaver{
-	
+
 	private static final String FOLDER = "./data/simple/";
 
+	/**
+	 * Speichert einen Eintrag als Textdatei.
+	 * @param eintrag der zu speichernde Eintrag
+	 * @return Fehlermeldung bei Misserfolg, sonst null
+	 */
 	@Override
 	public String save(Eintrag eintrag) {
 		

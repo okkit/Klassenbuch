@@ -3,6 +3,10 @@ package objekte;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Ein Eintrag beschreibt einen einzelnen Unterrichtstag im Klassenbuch.
+ * Er enthält das Datum, den Inhalt und die verwendeten Methoden.
+ */
 public class Eintrag extends MutterObjekt {
 
 	private LocalDate datum;
@@ -12,13 +16,17 @@ public class Eintrag extends MutterObjekt {
 	private Klassenbuch klassenbuch;
 
 	/**
-	 * Standardkonstruktor<br>
+	 * Standardkonstruktor.<br>
 	 * Das Datum wird auf das aktuelle Datum initialisiert.
 	 */
 	public Eintrag() {
 		this(LocalDate.now());
 	}
 
+	/**
+	 * Erstellt einen Eintrag mit einem bestimmten Datum.
+	 * @param datum das Datum des Eintrags
+	 */
 	public Eintrag(LocalDate datum) {
 		super();
 		this.datum = datum;
@@ -34,7 +42,10 @@ public class Eintrag extends MutterObjekt {
 		return info;
 	}
 
-	// Methode zum adden einer Instanz der Klasse Methodik zum ArrayList methodik
+	/**
+	 * Fügt eine Methodik zum Eintrag hinzu.
+	 * @param m die Methodik (z.B. Teamwork, Selbstlernphase)
+	 */
 	public void addMethodik(Methodik m) {
 		methodik.add(m);
 	}
