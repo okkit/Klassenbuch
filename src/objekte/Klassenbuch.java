@@ -5,20 +5,8 @@ import java.util.List;
 
 public class Klassenbuch extends MutterObjekt {
 
-//	KW, brauchen wir nicht, weil ermittelbar aus dem Datum
-//	Modul
-
 	private Modul modul;
 	private Gruppe gruppe;
-
-// --------- ein Eintrag besteht aus:----------------------------
-//		Tag, brauchen wir nicht, weil ermittelbar aus dem Datum
-//		Datum
-//		Inhalt
-//		Methodik	
-//		Dozent	
-// 		Thema
-//		Bemerkungen. Wohin damiT????????????????
 
 	List<Eintrag> eintraege;
 
@@ -42,6 +30,12 @@ public class Klassenbuch extends MutterObjekt {
 		if (eintraege == null)
 			return false;
 		return eintraege.remove(eintrag);
+	}
+
+	@Override
+	public String toString() {
+		return "Klassenbuch [modul=" + modul + ", gruppe=" + gruppe + ", eintraege=" + eintraege
+				+ "]";
 	}
 
 	public Modul getModul() {
