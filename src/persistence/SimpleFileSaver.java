@@ -5,6 +5,10 @@ import java.io.IOException;
 
 import objekte.Eintrag;
 
+/**
+ * Die Klasse kümmert sich um das Speichern von Objekten aus dem Projekt.<br>
+ * Gespeichert wird es in eine Text-Datei.
+ */
 public class SimpleFileSaver implements DataSaver{
 	
 	private static final String FOLDER = "./data/simple/";
