@@ -1,0 +1,29 @@
+@startuml
+package app {
+  package ui {
+    class FormularFrame
+    class FormularPanel
+  }
+
+  package application {
+    class FormularService
+    class FormularInput
+    class ValidationException
+  }
+
+  package domain {
+    class Formular
+  }
+
+  package persistence {
+    interface FormularRepository
+    class JdbcFormularRepository
+    class ConnectionFactory
+  }
+}
+
+ui.FormularPanel --> application.FormularService
+application.FormularService --> domain.Formular
+application.FormularService --> persistence.FormularRepository
+persistence.JdbcFormularRepository ..|> persistence.FormularRepository
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+actor Benutzer
+participant FormularPanel
+participant FormularService
+participant Formular
+participant JdbcFormularRepository
+
+Benutzer -> FormularPanel : Klick auf "Speichern"
+FormularPanel -> FormularPanel : Eingaben auslesen
+FormularPanel -> FormularPanel : technische Validierung\n(Pflichtfelder prüfen)
+
+alt Eingaben ungültig
+  FormularPanel -> Benutzer : Fehlermeldung anzeigen
+else Eingaben gültig
+  FormularPanel -> FormularService : speichern(FormularInput)
+  FormularService -> Formular : neues Formular(...)
+  FormularService -> Formular : validiereFachlich()
+
+  alt fachlich ungültig
+    FormularService --> FormularPanel : ValidationException
+    FormularPanel -> Benutzer : Fehlermeldung anzeigen
+  else fachlich gültig
+    FormularService -> JdbcFormularRepository : save(formular)
+    JdbcFormularRepository --> FormularService : OK
+    FormularService --> FormularPanel : OK
+    FormularPanel -> Benutzer : Erfolgsmeldung anzeigen
+  end
+end
+@enduml

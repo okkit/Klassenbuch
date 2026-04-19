@@ -1,0 +1,81 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "ui" {
+  class FormularFrame
+
+  class FormularPanel {
+    - txtTitel : JTextField
+    - txtBeschreibung : JTextArea
+    - chkOptionA : JCheckBox
+    - chkOptionB : JCheckBox
+    - cmbKategorie : JComboBox<String>
+    - btnSpeichern : JButton
+    - btnLoeschen : JButton
+    - service : FormularService
+    --
+    - speichern() : void
+    - formularLeeren() : void
+    - validatePflichtfelder() : void
+  }
+}
+
+package "application" {
+  class FormularService {
+    - repository : FormularRepository
+    --
+    + speichern(input : FormularInput) : void
+  }
+
+  class FormularInput {
+    - titel : String
+    - beschreibung : String
+    - optionA : boolean
+    - optionB : boolean
+    - kategorie : String
+  }
+
+  class ValidationException
+}
+
+package "domain" {
+  class Formular {
+    - titel : String
+    - beschreibung : String
+    - optionA : boolean
+    - optionB : boolean
+    - kategorie : String
+    --
+    + validiereFachlich() : void
+  }
+}
+
+package "persistence" {
+  interface FormularRepository {
+    + save(formular : Formular) : void
+  }
+
+  class JdbcFormularRepository {
+    + save(formular : Formular) : void
+  }
+
+  class ConnectionFactory {
+    + getConnection() : Connection
+  }
+}
+
+FormularFrame --> FormularPanel
+FormularPanel --> FormularService
+FormularPanel --> FormularInput
+FormularPanel ..> ValidationException
+
+FormularService --> FormularInput
+FormularService --> Formular
+FormularService --> FormularRepository
+
+Formular ..> ValidationException
+
+JdbcFormularRepository ..|> FormularRepository
+JdbcFormularRepository --> ConnectionFactory
+JdbcFormularRepository --> Formular
+@enduml
