@@ -8,15 +8,16 @@ public class Eintrag extends MutterObjekt {
 	private LocalDate datum;
 	private String inhalt;
 	private ArrayList<Methodik> methodik;
-	// TODO: zum Eintrag gehören auch
-	// Dozent
-	// Thema
-	// Bemerkung
 
-	// Welchen Konstruktor bieten wir an?
-	// Dabei die Überlegung: Ein Dozent will einen neuen Eintrag machen.
-	// Dafür muss ein Objekt erzeugt werden. Welche Mindestinformation muss
-	// dabei bereits vorhanden sein?
+	private Klassenbuch klassenbuch;
+
+	/**
+	 * Standardkonstruktor<br>
+	 * Das Datum wird auf das aktuelle Datum initialisiert.
+	 */
+	public Eintrag() {
+		this(LocalDate.now());
+	}
 
 	public Eintrag(LocalDate datum) {
 		super();
@@ -26,7 +27,11 @@ public class Eintrag extends MutterObjekt {
 
 	@Override
 	public String toString() {
-		return "Eintrag [datum=" + datum + ", inhalt=" + inhalt + ", methodik=" + methodik + "]";
+		String info = "\n Eintrag vom " + datum;
+		if (klassenbuch != null)
+			info += " der Gruppe " + klassenbuch.getGruppe().getName();
+		info += "\n Inhalt: " + inhalt + "\n Methodik: " + methodik;
+		return info;
 	}
 
 	// Methode zum adden einer Instanz der Klasse Methodik zum ArrayList methodik
@@ -57,6 +62,14 @@ public class Eintrag extends MutterObjekt {
 
 	public void setMethodik(ArrayList<Methodik> methodik) {
 		this.methodik = methodik;
+	}
+
+	public Klassenbuch getKlassenbuch() {
+		return klassenbuch;
+	}
+
+	public void setKlassenbuch(Klassenbuch klassenbuch) {
+		this.klassenbuch = klassenbuch;
 	}
 
 }

@@ -1,38 +1,38 @@
 package tests;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import objekte.Eintrag;
+import objekte.Gruppe;
+import objekte.Klassenbuch;
 import objekte.Methodik;
+import objekte.Modul;
+import persistence.DataSaver;
+import persistence.SimpleFileSaver;
 
 public class TestEintrag {
 
 	public static void main(String[] args) {
 		
-		Eintrag eintrag = new Eintrag(LocalDate.now());
-		System.out.println(eintrag);
-		System.out.println("--------------");
-		eintrag.setInhalt("Abstrakte Klassen");
-		System.out.println(eintrag);
+		Eintrag dienstag = new Eintrag();
+		dienstag.setInhalt("Wir versuchen mit Objekten klarzukommen");
 		
-		Methodik m = new Methodik();
-		m.setName("Gruppenarbeit");
+		Methodik method = new Methodik();
+		method.setName("Teamwork");
+		dienstag.addMethodik(method);
 		
-		// m muss nun in das ArrayList eintrag.methodik
-		// Versucht selbst
+		dienstag.addMethodik(new Methodik("Selbermachen"));
 		
-		ArrayList<Methodik> liste = eintrag.getMethodik();
-		liste.add(m);
+		System.out.println(dienstag);
 		
-		m = new Methodik();
-		m.setName("Frontalunterricht");
-		eintrag.addMethodik(m);
+		Klassenbuch buch = new Klassenbuch(new Modul("Java", 7), new Gruppe("Hyenen", "AE"));
+		buch.addEintrag(dienstag);
 		
-		String in = eintrag.getInhalt();
-		in = "Etwas anderes";
+		System.out.println(dienstag);
 		
-		System.out.println(eintrag);
+		// dienstag speichern
+		
+		DataSaver saver = new SimpleFileSaver();
+		String err = saver.save(dienstag);
+		System.out.println("Fehler beim Speichern: " + err);
 	}
 
 }
