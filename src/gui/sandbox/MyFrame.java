@@ -19,7 +19,10 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class MyFrame<E> extends JFrame {
+public class MyFrame extends JFrame {
+
+	private JTextArea textarea;
+	JCheckBox box;
 
 	public MyFrame() {
 		super("Meine Sandbox");
@@ -48,6 +51,7 @@ public class MyFrame<E> extends JFrame {
 		textfield.setOpaque(false);
 		textfield.setForeground(Color.RED);		
 		textfield.setFont(font);
+	
 	
 		// Label
 		JLabel label = new JLabel("Mein Labelchen");
@@ -80,7 +84,7 @@ public class MyFrame<E> extends JFrame {
 		
 		
 		// TextArea
-		JTextArea textarea = new JTextArea("Mehrzeiliges Textfeld");
+		textarea = new JTextArea("Mehrzeiliges Textfeld");
 		textarea.setFont(font);
 		textarea.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
 		ScrollPane sp = new ScrollPane();
@@ -103,6 +107,12 @@ public class MyFrame<E> extends JFrame {
 		// setVisible muss immer am Ende des Konstruktors stehen.
 		// Sonst könnte das GUI falsch angezeigt werden.
 		setVisible(true);
+	}
+	
+	public void printGUIInhalt() {
+		String text = textarea.getText();
+		System.out.println(text);
+		
 	}
 
 	public static void main(String[] args) {
